@@ -1,0 +1,97 @@
+{
+    "title": "Understanding Scene Instantiation",
+    "steps": [
+        {
+            "title": "Understanding Scene Instantiation",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">What is Scene Instantiation?</h2><p class=\"mb-4\">In Godot, <span class=\"term\" id=\"scene-instantiation\">scene instantiation</span> is the process of creating a new instance of a pre-made scene during runtime. This is a powerful feature that allows you to reuse complex objects or elements in your game.</p><p class=\"mb-4\">Think of a scene as a template or blueprint. When you instantiate a scene, you're essentially making a copy of that template and adding it to your game world.</p><h3 class=\"text-xl font-bold mb-2\">Why Use Scene Instantiation?</h3><ul class=\"list-disc list-inside mb-4\"><li>Reusability: Create a scene once, use it multiple times</li><li>Organization: Keep your project structure clean and modular</li><li>Efficiency: Instantiate complex objects with a single line of code</li></ul><div class=\"bg-gray-700 p-4 rounded-lg mb-4\"><p class=\"font-bold mb-2\">Remember:</p><p>Scenes in Godot are like LEGO blocks. You can create a complex LEGO model (scene) once, and then use it multiple times in different places or configurations in your game.</p></div>",
+            "quiz": [
+                {
+                    "question": "What is the main advantage of scene instantiation?",
+                    "options": ["It makes the game run faster", "It allows for reusability of complex objects", "It automatically creates new levels", "It reduces the file size of your game"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Setting Up the Project",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Preparing Your Project</h2><p class=\"mb-4\">Let's start by setting up our project to implement scene instantiation. We'll build upon the previous tutorial's button-clicking game.</p><ol class=\"list-decimal list-inside mb-4\"><li>Open your Godot project from the previous tutorial</li><li>Ensure you have a working scene with a button, label, and progress bar</li><li>Create a new script for the main scene if you haven't already</li></ol><h3 class=\"text-xl font-bold mb-2\">Creating a New Scene to Instantiate</h3><p class=\"mb-4\">Now, let's create a simple scene that we'll instantiate later:</p><ol class=\"list-decimal list-inside mb-4\"><li>Go to Scene > New Scene</li><li>Choose \"Other Node\" as the root node</li><li>Search for and select \"Sprite2D\"</li><li>Set the Sprite's texture to the Godot icon or any other image</li><li>Save this scene as \"Item.tscn\" in your project folder</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/7Kmr5eE.gif\" alt=\"Creating a new scene in Godot\" class=\"w-full h-auto\"></div><h3 class=\"text-xl font-bold mb-2\">Making This (Optionally) Prettier</h3><p class=\"mb-4\">We can make this project a bit fancier by deciding what we want to purchase and collect, instead of using the boring default icon.</p><div class=\"in-tutorial-toggle mb-2 pb-8\"><svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg><span class=\"text-blue-400 hover:text-blue-300\">Interested? Click here to see the steps.</span></div><div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\"><p class=\"mb-4\">We can download an asset pack so we can drag in a nicer image and make our item something more fancy.</p><p class=\"mb-4\">We will start by just using one image from the pack you choose, but at the end there will be an extension activity which will show you how to randomise your items, so you can <span class=\"font-bold underline\">collect 'em all!</span></p><p class=\"mb-4\">Start by finding an asset pack that has the images you think you'd want to purchase and collect.</p><p class=\"mb-4\">Here are two places you can look: </p><ul class=\"list-disc list-inside mb-4\"><li><a href=\"https://itch.io/game-assets/free/tag-sprites\" class=\"text-blue-400 hover:text-blue-300\">itch.io</a></li><li><a href=\"https://kenney.nl/assets/category:2D?sort=update\" class=\"text-blue-400 hover:text-blue-300\">Kenney</a></li></ul><p class=\"mb-4\">Download the pack, and unzip it if you have to.</p><p class=\"mb-4\">Now, drag the image(s) into the res:// folder in your project.</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/rvHYuBk.gif\" alt=\"dragging in an image asset\" class=\"w-1/2 h-1/2\"></div><p class=\"mb-4 mt-4\">I'm collecting pretzels for my project!</p></div>",
+            "quiz": [
+                {
+                    "question": "What file extension does Godot use for scene files?",
+                    "options": [".scn", ".gd", ".tscn", ".res"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Setting Up Preload",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Setting Up the Preload Variable</h2><p class=\"mb-4\">Before we implement scene instantiation, let's set up our <span class=\"term\" id=\"preload\">preload</span> variable. This allows us to efficiently load our scene resource.</p><ol class=\"list-decimal list-inside mb-4\"><li>Open your main scene script</li><li>At the top of your script, just below the \"extends\" line, we'll do the following:</li></ol><ol class=\"list-decimal list-inside mb-4\"><li>In the FileSystem panel, find your \"Item.tscn\" file</li><li>Click and drag the \"Item.tscn\" file towards your script</li><li>Before releasing the mouse button, hold down the CTRL key (CMD on Mac)</li><li>Release the mouse button while still holding CTRL</li><li>Godot will automatically insert the preload code for you</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/bxjcMfS.gif\" alt=\"Setting up preload in Godot\" class=\"w-3/4 h-3/4\"></div><p class=\"mb-4\">Your preload line should look like this:</p><pre class=\"code-block\">const ITEM = preload(\"res://item.tscn\")</pre><p class=\"mb-4\">This technique is a quick and easy way to set up preload variables in Godot, ensuring you have the correct file path.</p>",
+            "quiz": [
+                {
+                    "question": "What key do you hold while dragging a scene file to create a preload variable?",
+                    "options": ["Shift", "Alt", "CTRL (CMD on Mac)", "Tab"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Implementing Scene Instantiation",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Adding Instantiation Logic</h2><p class=\"mb-4\">Now that we have our item scene preloaded, let's implement the logic to instantiate it when the player has enough points.</p><p class=\"mb-4\">Add the following code to your main scene script:</p><pre class=\"code-block\">extends Node\n\nvar score = 0\nvar item_cost = 10\nconst ITEM = preload(\"res://item.tscn\")\n\nfunc _on_button_pressed():\n    score += 1\n    update_ui()\n\nfunc instantiate_item():\n    var new_item = ITEM.instantiate()\n    new_item.position = Vector2(randf_range(0, 1000), randf_range(0, 600))\n    add_child(new_item)\n\nfunc update_ui():\n    $ScoreLabel.text = \"Score: \" + str(score)\n    $BuyButton.disabled = score < item_cost</pre><p class=\"mb-4\">Let's break down what this code does:</p><ul class=\"list-disc list-inside mb-4\"><li>We keep track of the score and set a cost for buying items</li><li>The _on_button_pressed function increases the score</li><li>The instantiate_item function creates a new instance of our Item scene and positions it randomly</li><li>The update_ui function updates the score display and enables/disables the buy button</li></ul>",
+            "quiz": [
+                {
+                    "question": "What function is used to create a new instance of a preloaded scene?",
+                    "options": ["new()", "create()", "instantiate()", "spawn()"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Creating the Buy Button",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Adding a Buy Button to Your Scene</h2><p class=\"mb-4\">Now that we have our instantiation logic set up, let's add a button that players can click to purchase and spawn new items.</p><ol class=\"list-decimal list-inside mb-4\"><li>In your main scene, right-click on the root node and select \"Add Child Node\"</li><li>Search for and select \"Button\" to add a new Button node</li><li>In the Scene panel, rename the new Button node to \"BuyButton\"</li><li>Select the BuyButton node and look at the Inspector panel</li><li>Find the \"Text\" property and change it to \"Buy Item (10 points)\"</li><li>Adjust the button's position in the 2D view to place it where you want it in your scene</li></ol><div class=\"imgur-video-container\"><video controls loop autoplay muted><source src=\"https://i.imgur.com/N74Fd96.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div><p class=\"mb-4\">Your scene should now have a new button that players can click to buy items. In the next step, we'll connect this button to our code to make it functional.</p>",
+            "quiz": [
+                {
+                    "question": "What property do you change to set the text on a Button node?",
+                    "options": ["Label", "Text", "Content", "ButtonText"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Connecting the Buy Button",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Connecting the Buy Button to Your Script</h2><p class=\"mb-4\">Now that we have our Buy Button in the scene, let's connect it to our script and implement the buying functionality.</p><h3 class=\"text-xl font-bold mb-2\">Connecting the Button Signal</h3><ol class=\"list-decimal list-inside mb-4\"><li>Select the BuyButton node in your scene</li><li>Go to the Node tab in the Inspector panel (next to the Inspector tab)</li><li>Find the \"pressed()\" signal and double-click it</li><li>In the \"Connect a Signal\" window, make sure the path points to your main script</li><li>Keep the default function name \"_on_BuyButton_pressed\" and click \"Connect\"</li></ol><div class=\"imgur-video-container\"><video controls loop autoplay muted><source src=\"https://imgur.com/y4kYChZ.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div><h3 class=\"text-xl font-bold mb-2\">Implementing the Buy Functionality</h3><p class=\"mb-4\">Now, let's add the code to handle the button press and buy an item. Add this function to your script:</p><pre class=\"code-block\">func _on_buy_button_pressed():\n    if score >= item_cost:\n        score -= item_cost\n        instantiate_item()\n    update_ui()</pre><p class=\"mb-4\">This function checks if the player has enough points, deducts the cost, creates a new item, and updates the UI.</p><p class=\"mb-4\">Don't forget to update your update_ui() function to handle the BuyButton:</p><pre class=\"code-block\">func update_ui():\n    $ScoreLabel.text = \"Score: \" + str(score)\n    $BuyButton.disabled = score < item_cost</pre><p class=\"mb-4\">This will disable the Buy Button when the player doesn't have enough points.</p>",
+            "quiz": [
+                {
+                    "question": "What signal do we connect to handle a button click in Godot?",
+                    "options": ["clicked()", "pressed()", "activated()", "triggered()"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Understanding 2D Vectors",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Introduction to 2D Vectors</h2><p class=\"mb-4\">In our instantiate_item function, we used a <span class=\"term\" id=\"vector2\">Vector2</span> to position our new item. Let's dive deeper into what 2D vectors are and how they work in Godot.</p><p class=\"mb-4\">A <span class=\"term\" id=\"vector2\">Vector2</span> in Godot represents a 2D vector or point. It has two components:</p><ul class=\"list-disc list-inside mb-4\"><li>x: The horizontal component</li><li>y: The vertical component</li></ul><p class=\"mb-4\">In the context of 2D games:</p><ul class=\"list-disc list-inside mb-4\"><li>x increases as you move right</li><li>y increases as you move down</li></ul><div id=\"vector2-demo\" class=\"mb-4\"></div><h3 class=\"text-xl font-bold mb-2\">Using Vector2 for Positioning</h3><p class=\"mb-4\">In our code, we used Vector2 to set a random position for our new item:</p><pre class=\"code-block\">new_item.position = Vector2(randf_range(0, 1000), randf_range(0, 600))</pre><p class=\"mb-4\">This creates a Vector2 with:</p><ul class=\"list-disc list-inside mb-4\"><li>A random x value between 0 and 1000</li><li>A random y value between 0 and 600</li></ul><p class=\"mb-4\">This effectively positions our new item randomly within a 1000x600 area of our game window.</p>",
+            "simulation": {
+        "id": "vector2-demo",
+        "script": "vector2-simulation.js"
+    },
+            "quiz": [
+                {
+                    "question": "In Godot's 2D coordinate system, which direction does the y-axis increase?",
+                    "options": ["Left", "Right", "Up", "Down"],
+                    "correctAnswer": 3
+                }
+            ]
+        },
+        {
+            "title": "Summary and Extension",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">What You've Learned</h2><p class=\"mb-4\">Congratulations! In this tutorial, you've accomplished the following:</p><ul class=\"list-disc list-inside mb-4\"><li>Understood the concept of scene instantiation in Godot</li><li>Created a reusable scene for items</li><li>Used the preload function to efficiently load scenes</li><li>Implemented a buying mechanism with a functional UI</li><li>Learned about 2D vectors for positioning game objects</li><li>Connected signals to handle button clicks</li></ul><p class=\"mb-4\">You now have a working game mechanic where players can earn points and spend them to create new items in the game world!</p><div class=\"in-tutorial-toggle mb-2 pb-8\"><svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg><span class=\"text-blue-400 hover:text-blue-300\">Extension Activity: Randomize Item Images [WIP - needs adjustments and video]</span></div><div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\"><p class=\"mb-4\">Let's enhance our game by randomizing the item images each time we instantiate a new item. Here's how you can do it:</p><ol class=\"list-decimal list-inside mb-4\"><li>First, make sure you have multiple item images in your project's res:// folder</li><li>Modify your main script to include an array of item textures:</li></ol><pre class=\"code-block\">var item_textures = [\n    preload(\"res://item1.png\"),\n    preload(\"res://item2.png\"),\n    preload(\"res://item3.png\"),\n    # Add more textures as needed\n]</pre><p class=\"mb-4\">Now, update your instantiate_item() function:</p><pre class=\"code-block\">func instantiate_item():\n    var new_item = ITEM.instantiate()\n    new_item.position = Vector2(randf_range(0, 1000), randf_range(0, 600))\n    \n    # Randomly select a texture\n    var random_texture = item_textures[randi() % item_textures.size()]\n    new_item.texture = random_texture\n    \n    add_child(new_item)</pre><p class=\"mb-4\">This code randomly selects a texture from the array and applies it to the new item before adding it to the scene.</p><p class=\"mb-4\">Try it out! Each time you buy an item, you should now see a random image appear.</p></div>",
+            "quiz": [
+                {
+                    "question": "What Godot function is used to get a random integer within a range?",
+                    "options": ["rand()", "randi()", "randf()", "random()"],
+                    "correctAnswer": 1
+                }
+            ]
+        }
+    ]
+}

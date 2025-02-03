@@ -1,0 +1,79 @@
+{
+    "id": 5,
+    "title": "Movin' and Groovin': Basic Platformer Motion",
+    "nextTutorialTitle": "Advanced Character Control",
+    "steps": [
+      {
+        "title": "Step 1: Setting Up the Scene",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 1: Setting Up the Scene</h2><p class='mb-4'>Let's start by creating a new scene for our platformer character:</p><ol class='list-decimal list-inside mb-4'><li>Create a new scene and choose <span class='term' id='characterbody2d'>CharacterBody2D</span> as the root node.</li><li>Add a <span class='term' id='sprite2d'>Sprite2D</span> child node to represent your character.</li><li>Add a <span class='term' id='collisionshape2d'>CollisionShape2D</span> child node and set its shape to a rectangle that fits your character sprite.</li></ol><p class='mb-4'>Your scene hierarchy should look like this:</p><pre class='code-block'>CharacterBody2D (root)\n├── Sprite2D\n└── CollisionShape2D</pre><p class='mb-4'>Here's a preview of what we'll be building in this tutorial. Don't worry if some terms are unfamiliar - we'll learn about them as we go along!</p><div id='platformer-motion-simulation-preview' class='w-full flex justify-center mb-4'></div><p class='mb-4'>This simulation demonstrates the basics of character movement in a platformer game. We'll break down each component and learn how to implement it step by step.</p>",
+        "simulation": {
+          "id": "platformer-motion-simulation-preview",
+          "script": "platformer-motion-simulation.js"
+        },
+        "quiz": [
+          {
+            "question": "Why do we use CharacterBody2D for a platformer character?",
+            "options": [
+              "It's the only option available",
+              "It handles collision and movement calculations automatically",
+              "It's faster than other node types",
+              "It's required for 2D games"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 2: Creating a Script",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 2: Creating a Script</h2><p class='mb-4'>Now, let's add a script to control our character:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the CharacterBody2D node and select 'Attach Script'.</li><li>Name the script 'Player.gd' and create it.</li></ol><p class='mb-4'>Add the following code to your script:</p><pre class='code-block'>extends CharacterBody2D\n\nvar speed = 300.0\nvar jump_velocity = -400.0\nvar gravity = 980\n\nfunc _physics_process(delta):\n    # Add the gravity\n    if not is_on_floor():\n        velocity.y += gravity * delta\n\n    # Handle jump\n    if Input.is_action_just_pressed('jump') and is_on_floor():\n        velocity.y = jump_velocity\n\n    # Get the input direction and handle the movement/deceleration\n    var direction = Input.get_axis('move_left', 'move_right')\n    if direction:\n        velocity.x = direction * speed\n    else:\n        velocity.x = move_toward(velocity.x, 0, speed)\n\n    move_and_slide()</pre><p class='mb-4'>This script sets up basic movement and jumping for our character.</p>",
+        "quiz": [
+          {
+            "question": "What does the 'gravity' variable do in this script?",
+            "options": [
+              "It makes the character float",
+              "It simulates the force of gravity on the character",
+              "It controls the character's jump height",
+              "It's not used in the script"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 3: Understanding Input Maps",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 3: Understanding Input Maps</h2><p class='mb-4'>Input maps allow us to define custom actions for our game. Let's set up input maps for our platformer:</p><ol class='list-decimal list-inside mb-4'><li>Go to Project > Project Settings > Input Map.</li><li>Add new actions: 'move_left', 'move_right', and 'jump'.</li><li>Assign keys to these actions (e.g., Left Arrow for 'move_left', Right Arrow for 'move_right', and Space for 'jump').</li></ol><p class='mb-4'>Now our script will respond to these custom inputs instead of the default UI actions.</p>",
+        "quiz": [
+          {
+            "question": "What's the benefit of using custom input maps?",
+            "options": [
+              "They make the game run faster",
+              "They allow for easy remapping of controls",
+              "They are required for all Godot games",
+              "They automatically make the character move"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 4: Understanding Velocity and Movement",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 4: Understanding Velocity and Movement</h2><p class='mb-4'>Let's break down how velocity affects our character's movement:</p><ul class='list-disc list-inside mb-4'><li><strong>Horizontal Movement:</strong> We use <code>Input.get_axis()</code> to get a value between -1 and 1, representing left and right movement. This value is multiplied by our speed to set the horizontal velocity.</li><li><strong>Vertical Movement:</strong> We apply gravity constantly, increasing downward velocity. When jumping, we set an upward velocity.</li><li><strong>Actual Movement:</strong> The <code>move_and_slide()</code> function uses our velocity to move the character, handling collisions automatically.</li></ul><p class='mb-4'>This system creates smooth, physics-based movement for our platformer character.</p><div class='mb-8'><h3 class='text-xl font-bold mb-2'>Simulation</h3><p class='mb-4'>Experiment with this simulation to see how velocity affects character movement:</p><div id='platformer-motion-simulation' class='w-full flex justify-center'></div></div>",
+        "simulation": {
+          "id": "platformer-motion-simulation",
+          "script": "platformer-motion-simulation.js"
+        },
+        "quiz": [
+          {
+            "question": "What happens to the character's velocity when it's on the ground and not moving?",
+            "options": [
+              "It remains constant",
+              "It gradually decreases to zero",
+              "It immediately becomes zero",
+              "It increases"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      }
+    ]
+  }

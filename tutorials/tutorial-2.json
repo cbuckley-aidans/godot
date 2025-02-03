@@ -1,0 +1,69 @@
+{
+    "title": "Creating a New Scene",
+    "steps": [
+        {
+            "title": "Step 1: Create a New Scene",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 1: Create a New Scene</h2><p class=\"mb-4\">Let's start by creating a new <span class=\"term\" id=\"scene\">scene</span> in Godot.</p><p class=\"mb-4\">Open Godot and create a new project or open an existing one.</p><p class=\"mb-4\">Click on \"Scene\" in the top menu, then select \"New Scene\".</p><p class=\"mb-4\">Choose \"2D <span class=\"term\" id=\"scene\">Scene</span>\" as the root <span class=\"term\" id=\"node\">node</span> type.</p><p class=\"mb-4\">You should now see a new, empty 2D <span class=\"term\" id=\"scene\">scene</span>.</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/6pkyttd.png\" alt=\"New 2D Scene\" class=\"w-1/4 h-auto\"></div>",
+            "quiz": [
+                {
+                    "question": "What type of root node should you choose for this tutorial?",
+                    "options": ["3D Scene", "2D Scene", "Control", "Spatial"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Step 2: Add a Sprite2D Node",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 2: Add a Sprite2D Node</h2><p class=\"mb-4\">Now, let's add a <span class=\"term\" id=\"sprite2d\">Sprite2D</span> <span class=\"term\" id=\"node\">node</span> to our <span class=\"term\" id=\"scene\">scene</span>.</p><p class=\"mb-4\">Right-click on the root <span class=\"term\" id=\"node\">node</span> (Node2D) in the Scene panel.</p><p class=\"mb-4\">Select \"Add Child Node\" from the context menu.</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/mMCIYdu.png\" alt=\"Adding Sprite2D Node\" class=\"w-1/2 h-auto\"></div><p class=\"mb-4\">In the \"Create New Node\" window, search for and select \"<span class=\"term\" id=\"sprite2d\">Sprite2D</span>\".</p><p class=\"mb-4\">Click \"Create\" to add the <span class=\"term\" id=\"sprite2d\">Sprite2D</span> <span class=\"term\" id=\"node\">node</span> to your <span class=\"term\" id=\"scene\">scene</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/9V6ZMZJ.png\" alt=\"Adding Sprite2D Node\" class=\"w-full h-auto\"></div><p class=\"mb-4\">You should now see a <span class=\"term\" id=\"sprite2d\">Sprite2D</span> <span class=\"term\" id=\"node\">node</span> as a child of your root Node2D.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of a Sprite2D node?",
+                    "options": ["To add sound effects", "To display 2D images or animations", "To handle user input", "To create 3D models"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Step 3: Assign the Default Icon to Sprite2D",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 3: Assign the Default Icon to Sprite2D</h2><p class=\"mb-4\">Now that we have a <span class=\"term\" id=\"sprite2d\">Sprite2D</span> <span class=\"term\" id=\"node\">node</span>, let's give it an image to display.</p><p class=\"mb-4\">1. Select the Sprite2D node in the Scene panel.</p><p class=\"mb-4\">2. Drag the icon.svg in the bottom left of your screen over to the <empty> texture section at the top of the inspector. </p><div class=\"image-frame\"><img src=\"https://i.imgur.com/KvqF3Ij.gif\" alt=\"Texture property in Inspector\" class=\"w-full h-auto\"></div><p class=\"mb-4\">3. You should now see the Godot icon appear in your scene view.</p><p class=\"mb-4\">This icon.svg file is included by default in every new Godot project and is often used for testing.</p>",
+            "quiz": [
+                {
+                    "question": "Where is the default icon.svg file located in a Godot project?",
+                    "options": ["In the project's asset folder", "In Godot's installation directory", "At res://icon.svg", "It needs to be downloaded separately"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Step 4: Attach a Script to the Sprite2D",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 4: Attach a Script to the Sprite2D</h2><p class=\"mb-4\">Now that we have a <span class=\"term\" id=\"sprite2d\">Sprite2D</span>, let's attach a <span class=\"term\" id=\"script\">script</span> to it.</p><p class=\"mb-4\">Select the <span class=\"term\" id=\"sprite2d\">Sprite2D</span> <span class=\"term\" id=\"node\">node</span> in the Scene panel.</p><p class=\"mb-4\">In the top-right corner of the Godot editor, click on the \"Attach Script\" button.</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/ncUVmAF.png\" alt=\"Attaching Script to Sprite2D\"></div><p class=\"mb-4\">In the \"Attach Node Script\" window, change the name to ColourChanger.gd and click \"Create\".</p><div class=\"image-frame\"><img src=\"https://i.imgur.com/u7DbMzr.png\" alt=\"Attaching Script to Sprite2D\"></div><p class=\"mb-4\">A new <span class=\"term\" id=\"script\">script</span> file will open in the script editor.</p><p class=\"mb-4\">You'll see some default code, including empty <span class=\"term\" id=\"_ready\">_ready()</span> and <span class=\"term\" id=\"_process\">_process(delta)</span> functions.</p>",
+            "quiz": [
+                {
+                    "question": "What does the 'Attach Script' button do?",
+                    "options": ["Deletes the node", "Creates a new scene", "Attaches a script to the selected node", "Changes the node type"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Step 5: Understanding _ready() and _process()",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 5: Understanding _ready() and _process()</h2><p class=\"mb-4\">Let's break down the default <span class=\"term\" id=\"script\">script</span> structure:</p><pre class=\"code-block\">extends Sprite2D\n\nfunc <span class=\"term\" id=\"_ready\">_ready</span>():\n    pass # Replace with function body.\n\nfunc <span class=\"term\" id=\"_process\">_process</span>(delta):\n    pass # Replace with function body.\n</pre><h3 class=\"text-xl font-bold mb-2\">The _ready() Function</h3><p class=\"mb-4\">Think of <span class=\"term\" id=\"_ready\">_ready()</span> as a \"setup\" function. It runs once when your object first appears in the game.</p><p class=\"mb-4\">Use _ready() for things you want to do immediately when the object is created, like:</p><ul class=\"list-disc list-inside mb-4\"><li>Setting initial positions</li><li>Loading resources</li><li>Connecting signals</li></ul><h3 class=\"text-xl font-bold mb-2\">The _process() Function</h3><p class=\"mb-4\"><span class=\"term\" id=\"_process\">_process(delta)</span> is like a \"repeat forever\" loop in your game. It runs every frame (usually 60 times per second).</p><p class=\"mb-4\">Use _process() for things that need to happen continuously, like:</p><ul class=\"list-disc list-inside mb-4\"><li>Moving objects</li><li>Checking for player input</li><li>Updating timers or scores</li></ul><p class=\"mb-4\">The 'delta' in _process(delta) tells you how much time passed since the last frame. This helps make your game run at the same speed on different computers.</p>",
+            "simulation": {
+        "id": "color-changing-simulations",
+        "script": "color-changing-simulation.js"
+    },
+            "quiz": [
+                {
+                    "question": "What is the purpose of the _ready() function?",
+                    "options": ["To update the game every frame", "To run setup code when the object appears", "To load external scripts", "To handle user inputs"],
+                    "correctAnswer": 1
+                },
+                {
+                    "question": "What does the _process(delta) function do?",
+                    "options": ["Runs setup code", "Handles player input", "Runs every frame to update the game", "Loads resources"],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}

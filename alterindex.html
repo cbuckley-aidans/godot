@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godot Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .tutorial-card {
+            transition: all 0.3s ease;
+        }
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8">
+    <div id="buckles-container" class="fixed top-4 right-4 flex items-center bg-yellow-600 rounded-full px-3 py-1 shadow-lg cursor-pointer">
+        <svg id="coin-svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"></svg>
+        <span id="buckles-count" class="text-white font-bold">0</span>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center text-blue-300">Godot Tutorials</h1>
+
+        <div class="mb-6">
+            <input type="text" id="search-input" placeholder="Search tutorials..." class="w-full p-2 rounded bg-gray-700 text-white">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tutorial-grid">
+            <!-- Placeholder cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const tutorials = [
+            { id: 1, title: "Introduction to Godot", difficulty: "Beginner" },
+            { id: 2, title: "Creating Your First Scene", difficulty: "Beginner" },
+            { id: 3, title: "Scripting Basics", difficulty: "Intermediate" },
+            { id: 4, title: "2D Game Development", difficulty: "Intermediate" },
+            { id: 5, title: "3D Game Development", difficulty: "Advanced" },
+            { id: 6, title: "UI Design in Godot", difficulty: "Intermediate" },
+            // Add more tutorials as needed
+        ];
+
+        function createTutorialCard(tutorial) {
+            const card = document.createElement('div');
+            card.className = 'tutorial-card bg-gray-800 rounded-lg overflow-hidden shadow-lg';
+            card.innerHTML = `
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">${tutorial.title}</h2>
+                    <p class="text-gray-400 mb-4">Difficulty: ${tutorial.difficulty}</p>
+                    <a href="tutorial.html?id=${tutorial.id}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start Tutorial</a>
+                </div>
+            `;
+            return card;
+        }
+
+        function renderTutorials(tutorialsToRender) {
+            const grid = document.getElementById('tutorial-grid');
+            grid.innerHTML = '';
+            tutorialsToRender.forEach(tutorial => {
+                grid.appendChild(createTutorialCard(tutorial));
+            });
+        }
+
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredTutorials = tutorials.filter(tutorial => 
+                    tutorial.title.toLowerCase().includes(searchTerm) ||
+                    tutorial.difficulty.toLowerCase().includes(searchTerm)
+                );
+                renderTutorials(filteredTutorials);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTutorials(tutorials);
+            initSearch();
+        });
+    </script>
+</body>
+</html>

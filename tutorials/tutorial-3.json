@@ -1,0 +1,164 @@
+{
+    "title": "Creating a New Scene",
+    "steps": [
+        {
+            "title": "Step 1: Create a New Scene",
+            "content": "\n        <h2 class=\"text-2xl font-bold mb-4\">Step 1: Create a New Scene</h2>\n        <p class=\"mb-4\">Before we begin, let's take a look at what we'll be creating in this tutorial:</p>\n        <div id=\"interactive-demo\" class=\"mb-8\"></div>\n        <p class=\"mb-4\">This interactive demo shows a button, a label, and a progress bar. As you click the button, the counter increases and the progress bar fills up. Once it reaches the maximum value, the button becomes disabled.</p>\n        <p class=\"mb-4\">Now, let's start by creating a new <span class=\"term\" id=\"scene\">scene</span> in Godot.</p>\n        <ol class=\"list-decimal list-inside mb-4\">\n            <li>Open Godot and create a new project or open an existing one.</li>\n            <li>Click on \"Scene\" in the top menu, then select \"New Scene\".</li>\n            <li>Choose \"CanvasLayer\" as the root <span class=\"term\" id=\"node\">node</span> type.</li>\n            <div class=\"image-frame\">\n                <img src=\"https://i.imgur.com/KHIxt5U.png\" alt=\"picking a canvaslayer node\" class=\"w-3/4 h-3/4\">\n            </div>\n            <li>Rename this node to \"Main\" by right-clicking it in the Scene panel and selecting \"Rename\".</li>\n        </ol>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/uhKyHrL.png\" alt=\"renaming a scene in Godot\" class=\"w-3/4 h-3/4\">\n        </div>\n        <p class=\"mb-4\">You should now see an empty scene with a single Node named \"Main\".</p>\n    ",
+            "simulation": {
+        "id": "interactive-demo",
+        "script": "tutorial-3-simulations.js"
+    },
+            "quiz": [
+                {
+                    "question": "What type of root node should you choose for this tutorial?",
+                    "options": ["Sprite", "CanvasLayer", "Button", "Label"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Step 2: Add a Button",
+            "content": "\n        <h2 class=\"text-2xl font-bold mb-4\">Step 2: Add a Button</h2>\n        <p class=\"mb-4\">Now, let's add a <span class=\"term\" id=\"button\">Button</span> to our scene.</p>\n        <ol class=\"list-decimal list-inside mb-4\">\n            <li>Right-click on the \"Main\" node in the Scene panel.</li>\n            <li>Select \"Add Child Node\" from the context menu.</li>\n            <div class=\"in-tutorial-toggle mb-2\">\n                <svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" />\n                </svg>\n                <span class=\"text-blue-400 hover:text-blue-300\">How do I add a child node again?</span>\n            </div>\n            <div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\">\n                <div class=\"image-frame\">\n                    <img src=\"https://i.imgur.com/mMCIYdu.png\" alt=\"adding a child node\" class=\"h-1/2 w-1/2\">\n                </div>\n                <p class=\"mb-4 italic\">Note that the node in the picture might not be the same as what you are using for this step.</p>\n            </div>\n            <li>In the \"Create New Node\" window, search for and select \"Button\".</li>\n            <li>Click \"Create\" to add the Button node to your scene.</li>\n        </ol>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/yb8lihI.png\" alt=\"Adding a Button node in Godot\">\n        </div>\n        <p class=\"mb-4\">You should now see a Button node as a child of your Main node.</p>\n        <h3 class=\"text-xl font-bold mb-2\">Configuring the Button</h3>\n        <ol class=\"list-decimal list-inside mb-4\">\n            <li>Select the Button node in the Scene panel.</li>\n            <li>In the Inspector panel on the right, find the \"Text\" property.</li>\n                        <li>Under \"Layout\" in the Inspector, set \"Anchor\" to \"Center\" to position the button in the middle of the screen.</li>\n        </ol>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/TXVtaqy.png\" alt=\"Anchoring\">\n        </div>\n        <p class=\"mb-4\">Add some text to your button by typing it in the text field in the inspector.</p>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/bHEn4vY.png\" alt=\"adding text to a button\">\n        </div>\n    ",
+            "quiz": [
+                {
+                    "question": "How do you change the text on a Button node?",
+                    "options": [
+                        "By editing the node's name",
+                        "By changing the 'Text' property in the Inspector",
+                        "By adding a Label node as a child",
+                        "By writing a script"
+                    ],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Step 3: Add a Label",
+            "content": "\n        <h2 class=\"text-2xl font-bold mb-4\">Step 3: Add a Label</h2>\n        <p class=\"mb-4\">Now, let's add a <span class=\"term\" id=\"label\">Label</span> to display our counter.</p>\n        <ol class=\"list-decimal list-inside mb-4\">\n            <li>Right-click on the \"Main\" node in the Scene panel.</li>\n            <li>Select \"Add Child Node\" from the context menu.</li>\n            <div class=\"in-tutorial-toggle mb-2\">\n                <svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" />\n                </svg>\n                <span class=\"text-blue-400 hover:text-blue-300\">How do I add a child node again?</span>\n            </div>\n            <div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\">\n                <div class=\"image-frame\">\n                    <img src=\"https://i.imgur.com/mMCIYdu.png\" alt=\"adding a child node\" class=\"h-1/2 w-1/2\">\n                </div>\n                <p class=\"mb-4 italic\">Note that the node in the picture might not be the same as what you are using for this step.</p>\n            </div>\n            <li>In the \"Create New Node\" window, search for and select \"Label\".</li>\n            <li>Click \"Create\" to add the Label node to your scene.</li>\n        </ol>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/6ml4P5d.png\" alt=\"Adding a Label node in Godot\">\n        </div>\n        <h3 class=\"text-xl font-bold mb-2\">Configuring the Label</h3>\n        <ol class=\"list-decimal list-inside mb-4\">\n            <li>Select the Label node in the Scene panel.</li>\n            <li>In the Inspector panel, find the \"Text\" property.</li>\n            <li>Change the \"Text\" value to \"0\".</li>\n            <li>Under \"Layout\" in the Inspector, set \"Anchor\" to \"Center Top\" to position the label at the top center of the screen.</li>\n        </ol>\n        <div class=\"image-frame\">\n            <img src=\"https://i.imgur.com/BdMpJnR.png\" alt=\"Adding a Label node in Godot\">\n        </div>\n    ",
+            "quiz": [
+                {
+                    "question": "How do you position the Label node at the top center of the screen?",
+                    "options": [
+                        "By setting 'Anchor' to 'Top Left'",
+                        "By setting 'Anchor' to 'Center'",
+                        "By setting 'Anchor' to 'Center Top'",
+                        "By setting 'Anchor' to 'Bottom Center'"
+                    ],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Step 4: Create a Script",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 4: Create a Script</h2><p class=\"mb-4\">Now, let's create a <span class=\"term\" id=\"script\">script</span> to add functionality to our scene.</p><ol class=\"list-decimal list-inside mb-4\"><li>Select the \"Main\" node in the Scene panel.</li><li>Click the \"Attach Script\" button in the top-right corner of the Scene panel.</li><li>In the \"Attach Node Script\" window, keep the default settings and click \"Create\".</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/Jl3Eqnc.png\" alt=\"Attaching a script in Godot\"></div><p class=\"mb-4\">A new script file will open in the script editor. You'll see some default code, including empty <span class=\"term\" id=\"_ready\">_ready()</span> and <span class=\"term\" id=\"_process\">_process(delta)</span> functions.</p><h3 class=\"text-xl font-bold mb-2\">Adding Variables and Functions</h3><p class=\"mb-4\">Replace the content of your script with the following code:</p><pre class=\"code-block\">extends Node\n\nvar <span class=\"term\" id=\"variable\">count</span> = 0\n\nfunc _ready():\n    update_label()\n\nfunc update_label():\n    $Label.text = str(count)</pre><p class=\"mb-4\">Let's break down what this code does:</p><ul class=\"list-disc list-inside mb-4\"><li>We define a <span class=\"term\" id=\"variable\">variable</span> called 'count' and initialize it to 0.</li><li>In the <span class=\"term\" id=\"_ready\">_ready()</span> function, we call update_label() to set the initial label text.</li><li>The update_label() function sets the Label's text to the current count value.</li></ul><h3 class=\"text-xl font-bold mb-2\">Understanding the $ Syntax and Node Properties</h3><p class=\"mb-4\">In Godot, the $ syntax is a shorthand way to access child nodes. Let's look at how it works with node properties:</p><div id=\"dollar-sign-demo\" class=\"mb-8\"></div></li></ul><p class=\"mb-4\">So, when we use $Label.text = str(count) in our script:</p><ol class=\"list-decimal list-inside mb-4\"><li>We're accessing the Label child node of Main using $Label</li><li>We're then accessing the text property of that Label node</li><li>We're setting that text property to the string representation of our count variable</li></ol><p class=\"mb-4\">This powerful syntax allows us to easily manipulate child nodes and their properties from our scripts.</p>",
+            "simulation": {
+              "id": "dollar-sign-demo",
+              "script": "tutorial-3-simulations.js"
+            },
+            "quiz": [
+              {
+                "question": "In the expression $Label.text, what does the $ symbol represent?",
+                "options": [
+                  "A global variable",
+                  "Accessing a child node from the current node",
+                  "A special Godot function",
+                  "Creating a new Label node"
+                ],
+                "correctAnswer": 1
+              },
+              {
+                "question": "What does .text refer to in $Label.text?",
+                "options": [
+                  "A method of the Main node",
+                  "A child node of Label",
+                  "A property of the Label node",
+                  "A global variable"
+                ],
+                "correctAnswer": 2
+              }
+            ]
+          },
+          {
+            "title": "Step 5: Connecting the Button Signal",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 5: Connecting the Button Signal</h2><p class=\"mb-4\">Now, we'll connect the Button's \"pressed\" <span class=\"term\" id=\"signal\">signal</span> to our script. This will tell Godot what to do when the button is clicked.</p><ol class=\"list-decimal list-inside mb-4\"><li>Select the \"Button\" node in the Scene panel.</li><div class=\"image-frame\"><img src=\"https://i.imgur.com/Oey0wLn.png\" alt=\"selecting the button node\" class=\"w-1/2 h-1/2\"></div><li>In the Inspector panel on the right, click on the \"Node\" tab (next to the \"Inspector\" tab).</li><li>Find the \"pressed()\" signal in the list and double-click it.</li><div class=\"image-frame\"><img src=\"https://i.imgur.com/ZN855Jv.png\" alt=\"going to signals in node\" class=\"w-1/2 h-1/2\"></div><li>In the \"Connect a Signal\" window that appears:<ul class=\"list-disc list-inside ml-8 mb-4\"><li>Make sure \"Main\" is selected as the target node.</li><li>The \"Method in Node\" should be set to \"_on_button_pressed\".</li><li>Click \"Connect\" to create the signal connection.</li></ul></li><div class=\"image-frame\"><img src=\"https://i.imgur.com/ywPdkFl.png\" alt=\"connecting signal\" class=\"w-1/2 h-1/2\"></div></ol><p class=\"mb-4\">This process creates a connection between the Button's \"pressed\" signal and the _on_button_pressed() function in our script.</p><p class=\"mb-4\">Let's tell Main what to do when it actually receives a signal from the button.</p><p class=\"mb-4\">Add this to your code:</p><pre class=\"code-block\">func _on_button_pressed():\n    count += 1\n    update_label()</pre><h3 class=\"text-xl font-bold mb-2\">Understanding Signals</h3><p class=\"mb-4\">Signals are Godot's way of communicating between different parts of your game. Here's an interactive diagram to explain how signals work in our project:</p><div id=\"signal-diagram\" class=\"mb-8\"></div><p class=\"mb-4\">In this diagram:</p><ol class=\"list-decimal list-inside mb-4\"><li>When the player clicks the Button, it emits (sends out) a \"pressed\" signal.</li><li>This signal travels to the Main node, which is \"listening\" for this signal.</li><li>When the Main node receives the signal, it calls the _on_button_pressed() function in our script.</li><li>The Main node then sends an \"update_ui\" message to the Label node.</li><li>The Label node updates its text based on this message.</li></ol><div class=\"in-tutorial-toggle mb-2 pb-8\"><svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg><span class=\"text-blue-400 hover:text-blue-300\">Why can't we just directly signal the label? Why does Main need to be in the middle?</span></div><div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\"><p class=\"mb-4\">Good observation!</p><p class=\"mb-4\">The truth is, you could totally do it this way. You could attach the script to the button and have it talk directly to the label.</p><p class=\"mb-4\">We use a root node to be the \"manager\" of all of the children nodes. It's much easier to send signals up the chain to the boss, and have it do all the work.</p><p class=\"mb-4\">Godot uses a \"signal up, call down\" pattern. This means we aim to send signals up the chain, and have the root node call down methods on the children, like update_ui.</p></div><div class=\"bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4\"><p class=\"font-bold\">Tip:</p><p>Don't worry if this doesn't make sense yet! It can take a bit of time to understand why and when signals are used. We will keep practicing them as we go on!</p></div>",
+            "simulation": {
+              "id": "signal-diagram",
+              "script": "tutorial-3-simulations.js"
+            },
+            "quiz": [
+              {
+                "question": "What is the purpose of connecting a signal in Godot?",
+                "options": [
+                  "To create a new node",
+                  "To tell Godot what to do when a specific event occurs",
+                  "To change the color of a button",
+                  "To delete a node from the scene"
+                ],
+                "correctAnswer": 1
+              },
+              {
+                "question": "In the signal connection process, what does the 'Method in Node' field represent?",
+                "options": [
+                  "The node that emits the signal",
+                  "The signal being connected",
+                  "The function that will be called when the signal is emitted",
+                  "The scene where the signal is used"
+                ],
+                "correctAnswer": 2
+              }
+            ]
+          },
+          {
+            "title": "Step 6: Test the Scene",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 6: Test the Scene</h2><p class=\"mb-4\">Now that we've set up our scene and script, let's test it out!</p><ol class=\"list-decimal list-inside mb-4\"><li>Click the \"Play Scene\" button in the top-right corner of the editor (or press F6).</li><li>You should see your scene with a button and a label showing \"0\".</li><li>Click the button several times and watch the number increase!</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/LZxVH2v.png\" alt=\"Testing the interactive counter scene\"></div><p class=\"mb-4\">Congratulations! You've created an interactive counter using Godot!</p>",
+            "quiz": [
+              {
+                "question": "What happens when you click the button in your scene?",
+                "options": [
+                  "The scene restarts",
+                  "The number on the label increases",
+                  "A new button appears",
+                  "Nothing happens"
+                ],
+                "correctAnswer": 1
+              }
+            ]
+          },
+        {
+            "title": "Adding a Progress Bar",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 7: Add a Progress Bar</h2><p class=\"mb-4\">Let's extend our project by adding a <span class=\"term\" id=\"progressbar\">ProgressBar</span> that fills up as we click the button.</p><ol class=\"list-decimal list-inside mb-4\"><li>Right-click on the \"Main\" node in the Scene panel.</li><li>Select \"Add Child Node\" from the context menu.</li><li>In the \"Create New Node\" window, search for and select \"ProgressBar\".</li><li>Click \"Create\" to add the ProgressBar node to your scene.</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/RswTE47.png\" alt=\"Adding a ProgressBar node in Godot\"></div><h3 class=\"text-xl font-bold mb-2\">Configuring the ProgressBar</h3><ol class=\"list-decimal list-inside mb-4\"><li>Select the ProgressBar node in the Scene panel.</li><li>In the Inspector panel, set the following properties:</li><ul class=\"list-disc list-inside ml-8 mb-4\"><li>Min Value: 0</li><li>Max Value: 10</li><li>Step: 1</li><li>Value: 0</li></ul><div class=\"image-frame\"><img src=\"https://i.imgur.com/x3si4Tg.png\" alt=\"setting progress bar properties\" class=\"w-1/4 h-1/4\"></div><li>Under \"Layout\" in the Inspector, set \"Anchor\" to \"Center Bottom\" to position the progress bar at the bottom center of the screen.</li><div class=\"image-frame\"><img src=\"https://i.imgur.com/DjastnL.png\" alt=\"anchoring progress bar\" class=\"w-1/4 h-1/4\"></div><li>Increase the size to make it wider and easier to see.</li></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/BD2O0TH.gif\" alt=\"resizing progress bar\"></div><h3 class=\"text-xl font-bold mb-2\">Updating the Script</h3><p class=\"mb-4\">Now, let's update our script to include the progress bar functionality. Replace your script content with the following code:</p><pre class=\"code-block\">extends Node\n\nvar count = 0\nvar max_count = 10\n\nfunc _ready():\n    $ProgressBar.max_value = max_count\n    update_ui()\n\nfunc _on_button_pressed():\n    count = min(count + 1, max_count)\n    update_ui()\n\nfunc update_ui():\n    $Label.text = str(count)\n    $ProgressBar.<span class=\"term\" id=\"value\">value</span> = count\n    if count == max_count:\n        $Button.disabled = true</pre><p class=\"mb-4\">Let's break down the changes in this updated script:</p><ul class=\"list-disc list-inside mb-4\"><li>We added a new variable 'max_count' to set the maximum value for our counter and progress bar.</li><li>In the <span class=\"term\" id=\"_ready\">_ready()</span> function, we set the ProgressBar's max_value to match our max_count.</li><li>We've updated the _on_button_pressed() function to limit the count to max_count.</li><li>The update_ui() function now also updates the ProgressBar's <span class=\"term\" id=\"value\">value</span>.</li><li>When the count reaches max_count, we disable the button to prevent further clicks.</li></ul>",
+            "simulation": {
+        "id": "signal-diagram",
+        "script": "tutorial-3-simulations.js"
+    },
+            "quiz": [
+              {
+                "question": "How do we update the progress bar's fill amount in the script?",
+                "options": [
+                  "By changing its color",
+                  "By setting its 'value' property",
+                  "By adjusting its size",
+                  "By connecting a signal"
+                ],
+                "correctAnswer": 1
+              }
+            ]
+          },
+          {
+            "title": "Final Testing and Refinement",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Step 8: Final Testing and Refinement</h2><p class=\"mb-4\">Let's test our updated scene and make any final adjustments.</p><ol class=\"list-decimal list-inside mb-4\"><li>Click the \"Play Scene\" button in the top-right corner of the editor (or press F6).</li><li>You should now see your scene with a button, a label showing \"0\", and a progress bar at the bottom.</li><li>Click the button several times and observe:</li><ul class=\"list-disc list-inside ml-8 mb-4\"><li>The number on the label increases</li><li>The progress bar fills up</li><li>After 10 clicks, the button becomes disabled</li></ul></ol><div class=\"image-frame\"><img src=\"https://i.imgur.com/awgGJht.gif\" alt=\"Final interactive counter scene with progress bar\"></div><h3 class=\"text-xl font-bold mb-2\">Optional Extension Activities</h3><p class=\"mb-4\">If you want to polish your scene further, consider these optional steps:</p><ul class=\"list-disc list-inside mb-4\"><div class=\"in-tutorial-toggle mb-2\"><svg class=\"toggle-arrow h-4 w-4 text-blue-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg><span class=\"text-blue-400 hover:text-blue-300\">Make the label get increasingly annoyed at your button presses!</span></div><div class=\"in-tutorial-toggle-content pl-6 border-l-2 border-blue-400\"><p class=\"mb-4\">You can do this by checking the count value and updating the label text.</p><pre class=\"code-block\">func update_ui():\n\t$ProgressBar.value = count\n\tif count == 1:\n\t\t$Label.text = \"I'm warning you, don't push that button!\"\n\tif count == 2:\n\t\t$Label.text = \"What did I just say?\"\n\tif count == 3:\n\t\t$Label.text = \"If you keep this up there will be consequences!\"\n\tif count == max_count:\n\t\t$Button.disabled = true</pre><div class=\"image-frame\"><img src=\"https://i.imgur.com/MGE3jpG.gif\" alt=\"Final interactive counter scene with progress bar\" class=\"h-1/4 w-1/4\"></div></div><li>Adjust the colors of your progress bar in the Inspector panel for better visibility.</li><li>Experiment with different layouts or sizes for your nodes to improve the overall look.</li></ul><p class=\"mb-4\">Congratulations! You've created an interactive counter with a progress bar using Godot. This project has introduced you to important concepts like <span class=\"term\" id=\"variable\">variables</span>, changing node properties, and basic UI interaction.</p>",
+            "quiz": [
+              {
+                "question": "What happens when the progress bar is full?",
+                "options": [
+                  "The scene restarts",
+                  "The button becomes disabled",
+                  "The progress bar resets to zero",
+                  "A new level starts"
+                ],
+                "correctAnswer": 1
+              }
+            ]
+        }
+    ]
+}

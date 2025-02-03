@@ -1,0 +1,87 @@
+{
+    "id": 6,
+    "title": "[WIP] IMAGES NOT CORRECT - Coin Collector: Mastering Area2D",
+    "nextTutorialTitle": "UI Elements and Score Tracking",
+    "steps": [
+      {
+        "title": "Step 1: Setting Up the Main Scene",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 1: Setting Up the Main Scene</h2><p class='mb-4'>We'll start by creating a new scene that builds upon our previous platformer character:</p><ol class='list-decimal list-inside mb-4'><li>Open Godot and create a new scene (Scene > New Scene).</li><li>Choose <span class='term' id='node2d'>Node2D</span> as the root node type.</li><li>Rename the root node to 'Main' in the Scene panel.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/KvqF3Ij.png' alt='Creating a new Node2D scene' class='w-full'></div><p class='mb-4'>Next, let's add our player character:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the 'Main' node in the Scene panel and select 'Instance Child Scene'.</li><li>Navigate to and select your player scene file (created in the previous tutorial).</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/9V6ZMZJ.png' alt='Instancing the player scene' class='w-full'></div><p class='mb-4'>Now, let's add a label to display the score:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the 'Main' node again and select 'Add Child Node'.</li><li>Search for and select 'Label'.</li><li>Rename the new Label node to 'ScoreLabel'.</li><li>In the Inspector panel, set the following properties for ScoreLabel:<ul class='list-disc list-inside ml-4'><li>Text: \"Score: 0\"</li><li>Layout > Anchor > Preset: Top Center</li><li>Layout > Offset > Top: 20</li></ul></li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/TXVtaqy.png' alt='Setting up the ScoreLabel' class='w-full'></div><p class='mb-4'>Your final scene hierarchy should look like this:</p><pre class='code-block'>Main (Node2D)\n├── Player (CharacterBody2D)\n└── ScoreLabel (Label)</pre>",
+        "quiz": [
+          {
+            "question": "Why do we use a Node2D as the root for this scene?",
+            "options": [
+              "It's the only option available",
+              "It provides 2D transformation properties we might need later",
+              "It's required for all Godot games",
+              "It automatically handles collisions"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 2: Creating the Coin Scene",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 2: Creating the Coin Scene</h2><p class='mb-4'>Now, let's create a collectible coin using an <span class='term' id='area2d'>Area2D</span> node:</p><ol class='list-decimal list-inside mb-4'><li>Create a new scene (Scene > New Scene).</li><li>Choose Area2D as the root node type.</li><li>Rename the root node to 'Coin'.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/6pkyttd.png' alt='Creating a new Area2D scene' class='w-full'></div><p class='mb-4'>Next, add a sprite to represent the coin:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the 'Coin' node and select 'Add Child Node'.</li><li>Search for and select 'Sprite2D'.</li><li>In the Inspector panel, set the Texture property for the Sprite2D. You can use Godot's built-in icon or your own coin image.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/KHIxt5U.png' alt='Adding a Sprite2D to the Coin' class='w-full'></div><p class='mb-4'>Now, add a collision shape to the coin:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the 'Coin' node and select 'Add Child Node'.</li><li>Search for and select 'CollisionShape2D'.</li><li>In the Inspector panel, set the Shape property to 'New CircleShape2D'.</li><li>Adjust the radius of the CircleShape2D to match your coin sprite.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/uhKyHrL.png' alt='Adding a CollisionShape2D to the Coin' class='w-full'></div><p class='mb-4'>Finally, add a VisibleOnScreenNotifier2D to detect when the coin exits the screen:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the 'Coin' node and select 'Add Child Node'.</li><li>Search for and select 'VisibleOnScreenNotifier2D'.</li><li>Adjust its size to cover the coin sprite.</li></ol><p class='mb-4'>Your final coin scene hierarchy should look like this:</p><pre class='code-block'>Coin (Area2D)\n├── Sprite2D\n├── CollisionShape2D\n└── VisibleOnScreenNotifier2D</pre><p class='mb-4'>Save the scene as 'Coin.tscn'.</p>",
+        "quiz": [
+          {
+            "question": "What's the main advantage of using Area2D for collectibles?",
+            "options": [
+              "It's faster than other node types",
+              "It can detect overlaps without creating physical collisions",
+              "It automatically moves objects",
+              "It's the only node that can be collected"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 3: Scripting the Coin",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 3: Scripting the Coin</h2><p class='mb-4'>Let's add a script to our coin to make it fall and detect collisions:</p><ol class='list-decimal list-inside mb-4'><li>In the Coin scene, right-click on the Coin (Area2D) node and select 'Attach Script'.</li><li>Keep the default settings and click 'Create'.</li><li>Replace the default script content with the following code:</li></ol><pre class='code-block'>extends Area2D\n\nsignal collected\n\nvar fall_speed = 200\n\nfunc _process(delta):\n    position.y += fall_speed * delta\n\nfunc _on_body_entered(body):\n    if body.is_in_group('Player'):\n        emit_signal('collected')\n        queue_free()\n\nfunc _on_screen_exited():\n    queue_free()</pre><p class='mb-4'>Let's break down this script:</p><ul class='list-disc list-inside mb-4'><li><code>signal collected</code>: Defines a signal that will be emitted when the coin is collected.</li><li><code>var fall_speed = 200</code>: Sets the speed at which the coin falls.</li><li><code>_process(delta)</code>: This function is called every frame. It moves the coin downward based on the fall speed and the time since the last frame (delta).</li><li><code>_on_body_entered(body)</code>: This function is called when a body enters the coin's area. If the body is in the 'Player' group, it emits the 'collected' signal and removes the coin from the scene.</li><li><code>_on_screen_exited()</code>: This function is called when the coin exits the screen. It removes the coin from the scene.</li></ul><p class='mb-4'>Now, let's connect the necessary signals:</p><ol class='list-decimal list-inside mb-4'><li>Select the Coin (Area2D) node in the Scene panel.</li><li>Go to the Node tab in the Inspector panel.</li><li>Double-click the 'body_entered' signal and connect it to the script.</li><li>Select the VisibleOnScreenNotifier2D node.</li><li>Go to the Node tab in the Inspector panel.</li><li>Double-click the 'screen_exited' signal and connect it to the Coin script.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/ZN855Jv.png' alt='Connecting signals in the Coin scene' class='w-full'></div><p class='mb-4'>Save your changes to the Coin scene.</p>",
+        "quiz": [
+          {
+            "question": "What does the 'queue_free()' function do?",
+            "options": [
+              "It stops the coin from falling",
+              "It increases the player's score",
+              "It removes the coin from the scene",
+              "It makes the coin invisible"
+            ],
+            "correctAnswer": 2
+          }
+        ]
+      },
+      {
+        "title": "Step 4: Scripting the Main Scene",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 4: Scripting the Main Scene</h2><p class='mb-4'>Now, let's add a script to our Main scene to handle coin spawning and score tracking:</p><ol class='list-decimal list-inside mb-4'><li>In the Main scene, right-click on the Main (Node2D) node and select 'Attach Script'.</li><li>Keep the default settings and click 'Create'.</li><li>Replace the default script content with the following code:</li></ol><pre class='code-block'>extends Node2D\n\nvar Coin = preload('res://Coin.tscn')\nvar score = 0\n\nfunc _ready():\n    $Player.add_to_group('Player')\n    $Timer.connect('timeout', self, '_on_Timer_timeout')\n\nfunc _on_Timer_timeout():\n    var coin = Coin.instance()\n    add_child(coin)\n    coin.position.x = randi() % int(get_viewport_rect().size.x)\n    coin.position.y = 0\n    coin.connect('collected', self, '_on_coin_collected')\n\nfunc _on_coin_collected():\n    score += 1\n    $ScoreLabel.text = 'Score: ' + str(score)</pre><p class='mb-4'>Let's break down this script:</p><ul class='list-disc list-inside mb-4'><li><code>var Coin = preload('res://Coin.tscn')</code>: Preloads the Coin scene for efficient instantiation.</li><li><code>var score = 0</code>: Initializes the player's score.</li><li><code>_ready()</code>: This function is called when the scene is loaded. It adds the player to a group and connects the timer's timeout signal.</li><li><code>_on_Timer_timeout()</code>: This function is called when the timer times out. It creates a new coin, positions it randomly at the top of the screen, and connects its 'collected' signal.</li><li><code>_on_coin_collected()</code>: This function is called when a coin is collected. It increments the score and updates the score label.</li></ul><p class='mb-4'>Now, let's add a Timer node to spawn coins:</p><ol class='list-decimal list-inside mb-4'><li>Right-click on the Main node and select 'Add Child Node'.</li><li>Search for and select 'Timer'.</li><li>In the Inspector panel, set the following properties for the Timer:<ul class='list-disc list-inside ml-4'><li>Wait Time: 1 (or any desired interval)</li><li>Autostart: On</li></ul></li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/BdMpJnR.png' alt='Setting up the Timer node' class='w-full'></div><p class='mb-4'>Save your changes to the Main scene.</p>",
+        "quiz": [
+          {
+            "question": "What does the 'preload' function do in this script?",
+            "options": [
+              "It spawns a coin immediately",
+              "It loads the Coin scene into memory for faster instantiation",
+              "It increases the game's performance",
+              "It's not used in the script"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Step 5: Final Adjustments and Testing",
+        "content": "<h2 class='text-2xl font-bold mb-4'>Step 5: Final Adjustments and Testing</h2><p class='mb-4'>We're almost done! Let's make some final adjustments and test our game:</p><ol class='list-decimal list-inside mb-4'><li>Open the Project Settings (Project > Project Settings).</li><li>Go to the 'Display > Window' section.</li><li>Set a fixed window size (e.g., Width: 480, Height: 720) for this example game.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/MGE3jpG.png' alt='Setting the game window size' class='w-full'></div><p class='mb-4'>Now, let's test our game:</p><ol class='list-decimal list-inside mb-4'><li>Make sure you've saved all your scenes and scripts.</li><li>Click the 'Play' button in the top-right corner of the Godot editor, or press F5.</li><li>You should see your character at the bottom of the screen, coins falling from the top, and the score updating as you collect coins.</li></ol><div class='image-frame mb-4'><img src='https://i.imgur.com/awgGJht.gif' alt='Final game preview' class='w-full'></div><p class='mb-4'>If everything is working correctly, congratulations! You've created a simple coin collection game using Area2D nodes. Here's a summary of what we've accomplished:</p><ul class='list-disc list-inside mb-4'><li>Created a main scene with a player character and score display</li><li>Developed a coin scene using Area2D for collision detection</li><li>Implemented coin spawning and falling mechanics</li><li>Set up score tracking and display</li><li>Used signals to communicate between different parts of the game</li></ul><p class='mb-4'>Feel free to expand on this game by adding more features, such as obstacles, power-ups, or different types of collectibles!</p>",
+        "quiz": [
+          {
+            "question": "Why do we use signals in this game?",
+            "options": [
+              "To make the game run faster",
+              "To allow different parts of the game to communicate",
+              "To create more coins",
+              "Signals are not used in this game"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      }
+    ]
+  }
